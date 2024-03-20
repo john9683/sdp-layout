@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<!-- данный сайт создан в рамках учебного курса Skillbox ® -->
+<!-- на этой странице верстальщик грубо накосячил: вместо использования инструмента Яндекса
+  https://yandex.ru/dev/maps/jsapi/doc/2.1/dg/concepts/geocoding/suggest.html 
+  верстальщик вытащил поиск из стандартной карты Яндекса, по этой причине страница криво рендерится на мобилках -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SitDownPls - диваны как искусство.">
+  <title>SitDownPls</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="choices.css">
+  <link rel="stylesheet" href="swiper-bundle.css">
+  <link rel="stylesheet" href="graph-modal.min.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+  <script defer src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+  <script defer src="graph-modal.min.js"></script>
+  <script defer src="contacts-html.js"></script>
+  <script defer src="app.js"></script>
+
+  <link rel="icon" href="img/favicon.png" type="image/x-icon">
+</head>
+
+<body class="body-contacts">
+
+  <div class="top-wrapper">
+
+    <header class="header top-wrapper__header">
+
+      <div class="header__mobile container"></div>
+
+      <div class="header__top">
+        <div class="container header__top-container flex">
+
+          <div class="header__right-top-wrap flex">
+
+            <div class="header__region-choice flex">
+              <span class="header__region-legenda">Ваш регион:</span>
+              <select class="js-region-choices" name="select-region">
+                <option value=" " selected>Москва</option>
+                <option value=" ">Казань</option>
+                <option value=" ">Уфа</option>
+                <option value=" ">Пермь</option>
+              </select>
+            </div>
+
+            <div class="header__tel-wrap flex">
+              <a class="header__tel" href="tel:+74958854547">+7 495 885-45-47</a>
+              <svg class="header__svg-call" width="16.5" height="16.5" viewbox="0 0 16.5 16.5"><use xlink:href="img/sprite.svg#call-us"></use></svg>
+            </div>
+
+          </div>
+
+          <nav class="header__nav-top js-burger-menutop nav-top">
+            <ul class="list-reset nav-top__list flex">
+              <li class="nav-top__item nav-top__item-1 link-condition-position"><a class="nav-top__link link-condition" href="#">О компании</a></li>
+              <li class="nav-top__item nav-top__item-2 link-condition-position"><a class="nav-top__link link-condition" href="#">Гарантия и возврат</a></li>
+              <li class="nav-top__item nav-top__item-3 link-condition-position"><a class="nav-top__link link-condition" href="#">Корпоративным клиентам</a></li>
+              <li class="nav-top__item nav-top__item-4 link-condition-position"><a class="nav-top__link link-condition" href="#">Дизайн-решение</a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+
+      <div class="header__middle-mobile container"></div>
+
+      <div class="container header__middle flex">
+        <button class="btn-reset header__burger burger js-burger-btn" aria-label="Открыть главное меню"><span class="burger__line"></span></button>
+        <a class="header__logo logo-link" href="index.html">
+          <img class="logo-img" src="img/logo-sdp.png" alt="логотип SitDownPls" width="187" height="27">
+        </a>
+        <nav class="header__nav js-burger-menu nav">
+          <ul class="list-reset nav__list flex">
+            <li class="nav__item nav__item-1 link-condition-position"><a class="nav__link link-condition" href="catalog.html">Каталог</a></li>
+            <li class="nav__item nav__item-2 link-condition-position"><a class="nav__link link-condition" href="#">Магазины</a></li>
+            <li class="nav__item nav__item-3 link-condition-position"><a class="nav__link link-condition" href="#">Шоу‑рум</a></li>
+            <li class="nav__item nav__item-4 link-condition-position"><a class="nav__link link-condition" href="#">Доставка и оплата</a></li>
+            <li class="nav__item nav__item-5 link-condition-position"><a class="nav__link link-condition" href="#">Дисконт</a></li>
+            <li class="nav__item nav__item-6 link-condition-position"><a class="nav__link link-condition" href="contacts.html">Контакты</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="container shift header__bottom flex">
+
+        <div class="header__right-bottom-wrap   flex">
+
+          <form class="header__search-form flex" action="#" method="post">
+            <button class="btn-reset for-false-focus"></button>
+            <input class="header__search-input" aria-label="Поле для ввода" type="search" maxlength="50" placeholder="Я хочу купить...">
+            <svg class="header__search-svg" width="16" height="16" viewbox="0 0 16 16"><use xlink:href="img/sprite.svg#search"></use></svg>
+            <button class="btn-reset flex search-btn arrow-circle" aria-label="Найти" type="submit">
+              <svg class="arrow-big" width="32" height="32" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="15"  stroke-width="2" />
+                <path d="M14 11L19 16L14 21"   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </form>
+
+          <select class="header__category-select flex js-category-choices" name="select-category">
+                <option >Категория</option>
+                <option value=" ">Диваны</option>
+                <option value=" ">Комоды</option>
+                <option value=" ">Кресла</option>
+                <option value=" ">Стулья</option>
+                <option value=" ">Пуфы</option>
+                <option value=" ">Столы</option>
+                <option value=" ">Кровати</option>
+                <option value=" ">Аксессуары</option>
+                <option value=" ">Тумбы</option>
+            </select>
+
+        </div>
+
+        <div class="header__trade-icons-wrap flex">
+          <a class="header__trade-icon svg-condition-position" href="#"><svg class="header__trade-icon-svg svg-condition" width="26" height="28" viewbox="0 0 26 28"><use xlink:href="img/sprite.svg#client-account"></use></svg></a>
+          <a class="header__trade-icon svg-condition-position" href="#"><svg class="header__trade-icon-svg svg-condition" width="41" height="28" viewbox="0 0 41 28"><use xlink:href="img/sprite.svg#shop-bascet"></use></svg></a>
+        </div>
+
+      </div>
+
+    </header>
+
+  </div>
+
+  <main>
+
+    <section class="contacts">
+      <div class="container">
+
+        <nav class="site-navigation">
+          <ul class="list-reset site-navigation-list">
+            <li class="site-nav"><a class="site-nav-link link-condition" href="index.html">Главная</a></li>
+            <li class="site-nav"><a class="site-nav-link link-condition">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <h1 class="map-title section-title">Контакты</h1>
+      </div>
+
+      <div class="container map container-map-336">
+        <div class="map__wrap" id="map-1"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top ">
+
+      <div class=" footer__wrap container flex">
+
+        <div class="footer__left flex">
+          <a class="footer__logo logo-link" href="index.html">
+            <img class="logo-img" src="img/logo-sdp.png" alt="логотип SitDownPls" width="187" height="27">
+          </a>
+          <div class="footer__socials flex">
+            <a class="footer__social-link" href="#"><svg class="footer__social-svg" width="30" height="30" viewbox="0 0 30 30"><use xlink:href="img/sprite.svg#socials-fb"></use></svg></a>
+            <a class="footer__social-link" href="#"><svg class="footer__social-svg" width="30" height="30" viewbox="0 0 30 30"><use xlink:href="img/sprite.svg#socials-vk"></use></svg></a>
+            <a class="footer__social-link" href="#"><svg class="footer__social-svg" width="30" height="30" viewbox="0 0 30 30"><use xlink:href="img/sprite.svg#socials-insta"></use></svg></a>
+          </div>
+        </div>
+
+        <nav class="footer__nav">
+
+          <ul class="list-reset footer__list flex footer__cell-1">
+            <li class="footer__item-title link-condition-position">
+              <a class="footer__link-title link-condition" href="#">О нас</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">О компании</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">Блог</a>
+            </li>
+          </ul>
+
+          <ul class="list-reset footer__list flex footer__cell-2">
+            <li class="footer__item-title link-condition-position">
+              <a class="footer__link-title link-condition" href="#">Услуги</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">Доставка</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">Рассрочка и кредит</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">Сборка и установка</a>
+            </li>
+          </ul>
+
+          <ul class="list-reset footer__list flex footer__cell-3">
+            <li class="footer__item-title link-condition-position">
+              <a class="footer__link-title link-condition" href="#">Связь с нами</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition " href="#">Обратная связь</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">Контакты</a>
+            </li>
+          </ul>
+
+          <ul class="list-reset footer__list flex footer__cell-4">
+            <li class="footer__item-title link-condition-position">
+              <a class="footer__link-title link-condition" href="cooperation.html">Сотрудничество</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="cooperation.html">Поставщикам</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">Оптовикам</a>
+            </li>
+            <li class="footer__item link-condition-position">
+              <a class="footer__link link-condition" href="#">Карьера</a>
+            </li>
+          </ul>
+
+        </nav>
+
+      </div>
+    </div>
+    <div class="footer-bottom flex">SDP®   2011-2021</div>
+
+  </footer>
+
+</body>
+
+</html>
